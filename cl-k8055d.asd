@@ -14,7 +14,6 @@
   :homepage "https://github.com/Shirakumo/cl-k8055d"
   :serial T
   :components ((:file "package")
-               (:file "toolkit")
                (:file "low-level"))
   :depends-on (:cffi
                :cl-ppcre
