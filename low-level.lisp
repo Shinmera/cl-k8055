@@ -77,7 +77,7 @@
 
 (define-cfun set-all-digital :int)
 
-(define-cfun read-digital-channel :ing
+(define-cfun read-digital-channel :int
   (channel :long))
 
 (define-cfun read-all-digital :int)

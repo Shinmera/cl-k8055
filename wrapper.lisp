@@ -63,5 +63,5 @@
     (cl-k8055-cffi:reset-counter counter)))
 
 (defun (setf counter-debounce-time) (value counter)
-  (with-positive-retunr ()
+  (with-positive-return ()
     (cl-k8055-cffi:set-counter-debounce-time counter value)))

@@ -30,7 +30,7 @@
    #:clear-all-digital
    #:set-digital-channel
    #:set-all-digital
-   #:read-digitial-channel
+   #:read-digital-channel
    #:read-all-digital
    #:reset-counter
    #:read-counter
