@@ -49,6 +49,8 @@
    #:digital
    #:analog
    #:analogf
+   #:analogv
+   #:voltage
    #:counter
    #:reset-counter
    #:counter-debounce-time))
