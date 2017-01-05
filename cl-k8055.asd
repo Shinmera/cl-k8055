@@ -15,9 +15,9 @@
   :serial T
   :components ((:file "package")
                (:file "low-level")
-               (:file "wrapper"))
+               (:file "wrapper")
+               (:file "documentation"))
   :depends-on (:cffi
                :cl-ppcre
                :trivial-features
-               :trivial-garbage
                :documentation-utils))
