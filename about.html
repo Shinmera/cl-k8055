@@ -1,0 +1,114 @@
+<!DOCTYPE html> <html xmlns="http://www.w3.org/1999/xhtml"> <head> <meta charset="utf-8"/> <title>Cl-K8055</title> <meta name="viewport" content="width=device-width"/> <meta name="description" content="Bindings to k8055d"/> <meta name="author" content="Nicolas Hafner &lt;shinmera@tymoon.eu&gt;"/> <style type="text/css"> body{
+          max-width: 1024px;
+          margin: 0 auto 0 auto;
+          font-family: sans-serif;
+          color: #333333;
+          font-size: 14pt;
+          padding: 5px;
+      }
+      body>header{
+          display:flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          max-width: 100%;
+          text-align: center;
+      }
+      body>header img{
+          max-width: 50%;
+      }
+      img{
+          max-width: 100%;
+          max-height: 100%;
+      }
+      code{
+          font-family: Consolas, Inconsolata, monospace;
+      }
+      a{
+          text-decoration: none;
+          color: #0055AA;
+      }
+      a img{
+          border: none;
+      }
+      #documentation{
+          text-align: justify;
+      }
+      #documentation pre{
+          margin-left: 20px;
+          overflow: auto;
+      }
+      #documentation img{
+          margin: 5px;
+      }
+      #symbol-index>ul{
+          list-style: none;
+          padding: 0;
+      }
+      #symbol-index .package>ul{
+          list-style: none;
+          padding: 0 0 0 10px;
+      }
+      #symbol-index .package .nicknames{
+          font-weight: normal;
+      }
+      #symbol-index .package h4{
+          display: inline-block;
+          margin: 0;
+      }
+      #symbol-index .package article{
+          margin: 0 0 15px 0;
+      }
+      #symbol-index .package article header{
+          font-size: 1.2em;
+          font-weight: normal;
+      }
+      #symbol-index .package .name{
+          margin-right: 5px;
+      }
+      #symbol-index .package .docstring{
+          margin: 0 0 0 15px;
+          white-space: pre-wrap;
+          font-size: 12pt;
+      }
+      @media (max-width: 800px){
+          body{font-size: 12pt;}
+      } </style> </head> <body> <header> <h1>cl-k8055</h1> <span class="version">1.0.0</span> <p class="description">Bindings to k8055d</p> </header> <main> <article id="documentation">  <div><h2>About cl-k8055d</h2> <p>Interface for the <a href="https://www.velleman.eu/products/view/?id=351346">Velleman K8055 USB kit</a> through the <a href="https://github.com/rm-hull/k8055">K8055</a> linux driver. The driver library is included for x86-64 and ARM.</p> <h2>How To</h2> <p>Connect to the board/s.</p> <pre><code>(<a href="#K8055:CONNECT">k8055:connect</a>)</code></pre> <p>Read out or set some values to the inputs/outputs.</p> <pre><code>;; Inputs
+(<a href="#K8055:DIGITAL">k8055:digital</a> 0)
+(<a href="#K8055:ANALOG">k8055:analog</a> 0)
+(<a href="#K8055:ANALOGF">k8055:analogf</a> 0)
+(<a href="#K8055:ANALOGV">k8055:analogv</a> 0)
+;; Outputs
+(<a href="http://l1sp.org/cl/setf">setf</a> (<a href="#K8055:DIGITAL">k8055:digital</a> 1) T)
+(<a href="http://l1sp.org/cl/setf">setf</a> (<a href="#K8055:ANALOG">k8055:analog</a> 0) 120)
+(<a href="http://l1sp.org/cl/setf">setf</a> (<a href="#K8055:ANALOGF">k8055:analogf</a> 0) 0.25)
+(<a href="http://l1sp.org/cl/setf">setf</a> (<a href="#K8055:ANALOGV">k8055:analogv</a> 0) 5.0)
+;; Counters
+(<a href="#K8055:COUNTER">k8055:counter</a> 0)
+(<a href="#K8055:RESET-COUNTER">k8055:reset-counter</a> 0)</code></pre> <p>If the voltage mapping that is provided by default (4.7V for outputs, 10V for inputs) is not correct, you can adjust it with the <code><a href="#K8055:VOLTAGE">voltage</a></code> accessor.</p> <p>Once you're done, you should probably disconnect again.</p> <pre><code>(<a href="#K8055:DISCONNECT">k8055:disconnect</a>)</code></pre> </div>  </article> <article id="copyright">  <h2>Copyright</h2> <span>cl-k8055</span> is licensed under the <span><a href="https://tldrlegal.com/search?q=Artistic">Artistic</a></span> license.  © <span>Nicolas Hafner &lt;shinmera@tymoon.eu&gt;</span> .  This library can be obtained on <a href="https://github.com/Shirakumo/cl-k8055">https://github.com/Shirakumo/cl-k8055</a>.  </article>  <article id="symbol-index"> <h2>Package Index</h2> <ul><li class="package"> <h3> <a name="CL-K8055" href="#CL-K8055">CL-K8055</a> <span class="nicknames">(ORG.SHIRAKUMO.K8055 K8055)</span> </h3> <ul><li> <a name="CL-K8055:*DEFAULT-MAX-ATTEMPTS*"> </a> <article> <header class="special"> <span class="type">special</span>  <h4 class="name"><code><a href="#CL-K8055:*DEFAULT-MAX-ATTEMPTS*">*DEFAULT-MAX-ATTEMPTS*</a></code></h4>  </header> <pre class="docstring">The default maximum number of retries for a request to the board.</pre> </article> </li><li> <a name="CL-K8055:ANALOG"> </a> <article> <header class="accessor"> <span class="type">accessor</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:ANALOG">ANALOG</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Accessor to the analog inputs and outputs.
+
+The values should be integers, which will be truncated to
+the range [0,255].
+The channel must be an integer in [1,2].</pre> </article> </li><li> <a name="CL-K8055:ANALOGF"> </a> <article> <header class="accessor"> <span class="type">accessor</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:ANALOGF">ANALOGF</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Accessor to the analog inputs and outputs.
+
+The values should be floats, truncated to the range [0,1].
+
+See ANALOG</pre> </article> </li><li> <a name="CL-K8055:ANALOGV"> </a> <article> <header class="accessor"> <span class="type">accessor</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:ANALOGV">ANALOGV</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Accessor to the analog inputs and outputs.
+
+The values should be voltage floats, truncated to the
+respective input/output voltages.
+
+See VOLTAGE
+See ANALOGF</pre> </article> </li><li> <a name="CL-K8055:DIGITAL"> </a> <article> <header class="accessor"> <span class="type">accessor</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:DIGITAL">DIGITAL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Accessor to the digital inputs and outputs.
+
+The values should be booleans.
+The channel must be an integer in [1,8].</pre> </article> </li><li> <a name="CL-K8055:VOLTAGE"> </a> <article> <header class="accessor"> <span class="type">accessor</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:VOLTAGE">VOLTAGE</a></code></h4> <code class="qualifiers"></code> <code class="arguments">DIRECTION CHANNEL</code><code>)</code>  </header> <pre class="docstring">Accessor to the voltage maps for the analog ouputs and inputs.
+
+Direction should be one of :IN :OUT, and the value a
+float designating the upper-bound voltage number.
+
+See *VOLTAGE-MAP*</pre> </article> </li><li> <a name="CL-K8055:CONNECT"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:CONNECT">CONNECT</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Attempt to connect to both devices.
+
+Signals an error if it was unsuccessful.</pre> </article> </li><li> <a name="CL-K8055:COUNTER"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:COUNTER">COUNTER</a></code></h4> <code class="qualifiers"></code> <code class="arguments">COUNTER</code><code>)</code>  </header> <pre class="docstring">Reads the value of a counter.</pre> </article> </li><li> <a name="CL-K8055:COUNTER-DEBOUNCE-TIME"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:COUNTER-DEBOUNCE-TIME">(SETF COUNTER-DEBOUNCE-TIME)</a></code></h4> <code class="qualifiers"></code> <code class="arguments">VALUE COUNTER</code><code>)</code>  </header> <pre class="docstring">Sets the debounce time of a counter.</pre> </article> </li><li> <a name="CL-K8055:DISCONNECT"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:DISCONNECT">DISCONNECT</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Disconnect from the devices.</pre> </article> </li><li> <a name="CL-K8055:RESET-COUNTER"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055:RESET-COUNTER">RESET-COUNTER</a></code></h4> <code class="qualifiers"></code> <code class="arguments">COUNTER</code><code>)</code>  </header> <pre class="docstring">Resets a counter.</pre> </article> </li></ul> </li><li class="package"> <h3> <a name="CL-K8055-CFFI" href="#CL-K8055-CFFI">CL-K8055-CFFI</a> <span class="nicknames">(ORG.SHIRAKUMO.K8055.CFFI)</span> </h3> <ul><li> <a name="CL-K8055-CFFI:*STATIC*"> </a> <article> <header class="special"> <span class="type">special</span>  <h4 class="name"><code><a href="#CL-K8055-CFFI:*STATIC*">*STATIC*</a></code></h4>  </header> <pre class="docstring">Pathname pointing to the static/ directory in the source tree.
+
+See *HERE*</pre> </article> </li><li> <a name="CL-K8055-CFFI:CLEAR-ALL-ANALOG"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:CLEAR-ALL-ANALOG">CLEAR-ALL-ANALOG</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Set the output value of both analog channels to 0.</pre> </article> </li><li> <a name="CL-K8055-CFFI:CLEAR-ALL-DIGITAL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:CLEAR-ALL-DIGITAL">CLEAR-ALL-DIGITAL</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Turn off all digital channels.</pre> </article> </li><li> <a name="CL-K8055-CFFI:CLEAR-ANALOG-CHANNEL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:CLEAR-ANALOG-CHANNEL">CLEAR-ANALOG-CHANNEL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Set the output value of an analog channel to 0.</pre> </article> </li><li> <a name="CL-K8055-CFFI:CLEAR-DIGITAL-CHANNEL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:CLEAR-DIGITAL-CHANNEL">CLEAR-DIGITAL-CHANNEL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Turn off a digital channel.</pre> </article> </li><li> <a name="CL-K8055-CFFI:CLOSE-DEVICE"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:CLOSE-DEVICE">CLOSE-DEVICE</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Close the opened device.</pre> </article> </li><li> <a name="CL-K8055-CFFI:OPEN-DEVICE"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:OPEN-DEVICE">OPEN-DEVICE</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CARD-ADDRESS</code><code>)</code>  </header> <pre class="docstring">Open the devices at the specified addresses. Card-addresses should be a two-bit mask.</pre> </article> </li><li> <a name="CL-K8055-CFFI:OUTPUT-ALL-ANALOG"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:OUTPUT-ALL-ANALOG">OUTPUT-ALL-ANALOG</a></code></h4> <code class="qualifiers"></code> <code class="arguments">DATA1 DATA2</code><code>)</code>  </header> <pre class="docstring">Set the output values of both analog channels.</pre> </article> </li><li> <a name="CL-K8055-CFFI:OUTPUT-ANALOG-CHANNEL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:OUTPUT-ANALOG-CHANNEL">OUTPUT-ANALOG-CHANNEL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL DATA</code><code>)</code>  </header> <pre class="docstring">Set the output value of an analog channel.</pre> </article> </li><li> <a name="CL-K8055-CFFI:READ-ALL-ANALOG"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:READ-ALL-ANALOG">READ-ALL-ANALOG</a></code></h4> <code class="qualifiers"></code> <code class="arguments">DATA1 DATA2</code><code>)</code>  </header> <pre class="docstring">Read both analog channels at once.</pre> </article> </li><li> <a name="CL-K8055-CFFI:READ-ALL-DIGITAL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:READ-ALL-DIGITAL">READ-ALL-DIGITAL</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Read  the values of all digital channels.</pre> </article> </li><li> <a name="CL-K8055-CFFI:READ-ALL-VALUES"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:READ-ALL-VALUES">READ-ALL-VALUES</a></code></h4> <code class="qualifiers"></code> <code class="arguments">DATA1 DATA2 DATA3 DATA4 DATA5</code><code>)</code>  </header> <pre class="docstring">Read all inputs on the board at once.</pre> </article> </li><li> <a name="CL-K8055-CFFI:READ-ANALOG-CHANNEL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:READ-ANALOG-CHANNEL">READ-ANALOG-CHANNEL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Read the value from an analog channel.</pre> </article> </li><li> <a name="CL-K8055-CFFI:READ-COUNTER"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:READ-COUNTER">READ-COUNTER</a></code></h4> <code class="qualifiers"></code> <code class="arguments">COUNTER-NR</code><code>)</code>  </header> <pre class="docstring">Read the value of a counter.</pre> </article> </li><li> <a name="CL-K8055-CFFI:READ-DIGITAL-CHANNEL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:READ-DIGITAL-CHANNEL">READ-DIGITAL-CHANNEL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Read the value of a digital channel.</pre> </article> </li><li> <a name="CL-K8055-CFFI:RESET-COUNTER"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:RESET-COUNTER">RESET-COUNTER</a></code></h4> <code class="qualifiers"></code> <code class="arguments">COUNTER-NR</code><code>)</code>  </header> <pre class="docstring">Reset a counter.</pre> </article> </li><li> <a name="CL-K8055-CFFI:SEARCH-DEVICES"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:SEARCH-DEVICES">SEARCH-DEVICES</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Return a two bit mask of the available devices on the system.</pre> </article> </li><li> <a name="CL-K8055-CFFI:SET-ALL-ANALOG"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:SET-ALL-ANALOG">SET-ALL-ANALOG</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Set the output value of both analog channels to 255.</pre> </article> </li><li> <a name="CL-K8055-CFFI:SET-ALL-DIGITAL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:SET-ALL-DIGITAL">SET-ALL-DIGITAL</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Turn on all digital channels.</pre> </article> </li><li> <a name="CL-K8055-CFFI:SET-ALL-VALUES"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:SET-ALL-VALUES">SET-ALL-VALUES</a></code></h4> <code class="qualifiers"></code> <code class="arguments">DIGITAL ANALOG1 ANALOG2</code><code>)</code>  </header> <pre class="docstring">Set all outpouts on the board at once.</pre> </article> </li><li> <a name="CL-K8055-CFFI:SET-ANALOG-CHANNEL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:SET-ANALOG-CHANNEL">SET-ANALOG-CHANNEL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Set the output value of an analog channel to 255.</pre> </article> </li><li> <a name="CL-K8055-CFFI:SET-COUNTER-DEBOUNCE-TIME"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:SET-COUNTER-DEBOUNCE-TIME">SET-COUNTER-DEBOUNCE-TIME</a></code></h4> <code class="qualifiers"></code> <code class="arguments">COUNTER-NR DEBOUNCE-TIME</code><code>)</code>  </header> <pre class="docstring">Set the debouncing time of a counter to a specific value.</pre> </article> </li><li> <a name="CL-K8055-CFFI:SET-CURRENT-DEVICE"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:SET-CURRENT-DEVICE">SET-CURRENT-DEVICE</a></code></h4> <code class="qualifiers"></code> <code class="arguments">LNG-CARD-ADDRESS</code><code>)</code>  </header> <pre class="docstring">Change the current device address.</pre> </article> </li><li> <a name="CL-K8055-CFFI:SET-DIGITAL-CHANNEL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:SET-DIGITAL-CHANNEL">SET-DIGITAL-CHANNEL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">CHANNEL</code><code>)</code>  </header> <pre class="docstring">Turn on a digital channel.</pre> </article> </li><li> <a name="CL-K8055-CFFI:VERSION"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:VERSION">VERSION</a></code></h4> <code class="qualifiers"></code> <code class="arguments"></code><code>)</code>  </header> <pre class="docstring">Return the library version.</pre> </article> </li><li> <a name="CL-K8055-CFFI:WRITE-ALL-DIGITAL"> </a> <article> <header class="function"> <span class="type">function</span>  <code>(</code><h4 class="name"><code><a href="#CL-K8055-CFFI:WRITE-ALL-DIGITAL">WRITE-ALL-DIGITAL</a></code></h4> <code class="qualifiers"></code> <code class="arguments">DATA</code><code>)</code>  </header> <pre class="docstring">Write all the digital outputs at once. Should be a bitmask.</pre> </article> </li></ul> </li></ul> </article>  </main> </body> </html> 
