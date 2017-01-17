@@ -10,8 +10,8 @@
   :license "Artistic"
   :author "Nicolas Hafner <shinmera@tymoon.eu>"
   :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
-  :description "Bindings to k8055d"
-  :homepage "https://github.com/Shirakumo/cl-k8055"
+  :description "Bindings to the k8055 DAQ hobby board."
+  :homepage "https://github.com/Shinmera/cl-k8055"
   :serial T
   :components ((:file "package")
                (:file "low-level")
