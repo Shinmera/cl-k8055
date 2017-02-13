@@ -2,6 +2,8 @@
 Interface for the [Velleman K8055 USB kit](https://www.velleman.eu/products/view/?id=351346) through the [K8055](https://github.com/rm-hull/k8055) linux driver. The driver library is included for x86-64 and ARM.
 
 ## How To
+First you will need to install the udev rules into your system in order to be able to connect to and use the Velleman device from a standard user account without administrator privileges. To do so, copy the [velleman.rules](velleman.rules) file to `/etc/udev/rules.d/`. You may need to restart your system in order for the rules to take effect.
+
 Connect to the board/s.
 
 ```
