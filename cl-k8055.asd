@@ -10,7 +10,9 @@
   :author "Nicolas Hafner <shinmera@tymoon.eu>"
   :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
   :description "Bindings to the k8055 DAQ hobby board."
-  :homepage "https://github.com/Shinmera/cl-k8055"
+  :homepage "https://Shinmera.github.io/cl-k8055/"
+  :bug-tracker "https://github.com/Shinmera/cl-k8055/issues"
+  :source-control (:git "https://github.com/Shinmera/cl-k8055.git")
   :serial T
   :components ((:file "package")
                (:file "low-level")
