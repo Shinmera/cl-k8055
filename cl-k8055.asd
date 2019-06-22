@@ -6,7 +6,7 @@
 
 (asdf:defsystem cl-k8055
   :version "1.0.0"
-  :license "Artistic"
+  :license "zlib"
   :author "Nicolas Hafner <shinmera@tymoon.eu>"
   :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
   :description "Bindings to the k8055 DAQ hobby board."
